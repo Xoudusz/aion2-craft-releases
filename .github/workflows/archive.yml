@@ -4,7 +4,7 @@ name: Price archive
 
 on:
   schedule:
-    - cron: "17 * * * *" # hourly; aion2.market refreshes around :10
+    - cron: "45 * * * *" # hourly, after aion2.market refreshes (around :25-:35)
   workflow_dispatch:
 
 permissions:
