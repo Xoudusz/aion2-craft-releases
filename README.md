@@ -17,3 +17,7 @@ Installs for your Windows user only (no admin needed). From version 0.2.0 on, th
 - **Craft quantities:** open a recipe and set how many crafts you plan; material totals follow.
 
 This repository only hosts the installers and update files.
+
+## Price history
+
+`history/<server>/<YYYY-MM-DD>.csv` holds hourly lowest-listing prices from [aion2.market](https://aion2.market) (`item,t,price,listings`, `t` in ms UTC). The `Price archive` workflow adds new rows every hour; the app reads the last days from here for its trend lines and "cheap now" badges.
