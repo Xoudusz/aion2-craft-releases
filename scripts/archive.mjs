@@ -9,7 +9,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const SERVERS = [12301]; // Israphel (EU). Add more server ids here.
 const UA = "aion2-craft-archive (hourly; https://github.com/Xoudusz/aion2-craft-releases)";
-const BACKFILL_PER_RUN = 20;
+const BACKFILL_PER_RUN = 40;
 const BACKFILL_GAP_MS = 3000;
 const BACKFILL_AGAIN_MS = 7 * 86_400_000;
 const HEADER = "item,t,price,listings\n";
@@ -55,7 +55,11 @@ for (const server of SERVERS) {
   const stateFile = `${dir}/backfill.json`;
   const state = existsSync(stateFile) ? JSON.parse(readFileSync(stateFile, "utf8")) : {};
   const now = Date.now();
-  const todo = quotes.rows.map(r => r.itemId).filter(id => !(now - (state[id] ?? 0) < BACKFILL_AGAIN_MS)).slice(0, BACKFILL_PER_RUN);
+  // Materials and consumables (ids 6xxxxxxxx) first: they drive the app's "cheap now" signals.
+  const todo = quotes.rows.map(r => r.itemId)
+    .filter(id => !(now - (state[id] ?? 0) < BACKFILL_AGAIN_MS))
+    .sort((a, b) => (b >= 6e8) - (a >= 6e8) || a - b)
+    .slice(0, BACKFILL_PER_RUN);
   for (const id of todo) {
     await sleep(BACKFILL_GAP_MS);
     try {
