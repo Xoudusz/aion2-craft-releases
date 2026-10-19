@@ -47,7 +47,10 @@ for (const server of SERVERS) {
   const dir = `history/${server}`;
   mkdirSync(dir, { recursive: true });
 
-  const quotes = await get(`https://aion2.market/market-api.php?action=quotes&server=${server}`);
+  // Quotes from the shared price hub (Cloudflare Worker, one aion2.market fetch for all users);
+  // aion2.market directly if the hub is down.
+  const quotes = await get(`https://aion2-craft-prices.neweth.workers.dev/quotes?server=${server}`)
+    .catch(() => get(`https://aion2.market/market-api.php?action=quotes&server=${server}`));
   const rows = quotes.rows.map(r => [r.itemId, Date.parse(r.observedAt), r.lowestPrice, r.listingCount ?? ""]);
   console.log(`server ${server}: ${addRows(dir, rows)} new quote rows`);
 
