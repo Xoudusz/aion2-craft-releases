@@ -1,22 +1,69 @@
 # Aion2 Craft — releases
 
-Windows app that ranks Aion 2 crafting recipes by profit, with an in-game overlay.
+Windows app for Aion 2: ranks crafting recipes by profit, tracks your pet souls, and shows a map, all in an in-game overlay.
 
 ## Install
 
 1. Download `Aion2 Craft_<version>_x64-setup.exe` from the [latest release](https://github.com/Xoudusz/aion2-craft-releases/releases/latest).
 2. Run it. The installer is unsigned, so Windows SmartScreen may warn: click **More info**, then **Run anyway**.
+3. Optional, for the pet features: install [Npcap](https://npcap.com/#download) (free, default options).
 
-Installs for your Windows user only (no admin needed). From version 0.2.0 on, the app updates itself: a banner in the main window offers new versions.
+Installs for your Windows user only (no admin needed). The app updates itself: it checks for new versions at start and every 6 hours, and a banner offers to install them (one click, then it restarts).
 
-## Use
+Run the game in **borderless windowed** mode; exclusive fullscreen hides overlays.
 
-- **Main window:** all recipes ranked by profit per attempt, with live prices from aion2.market (refreshed hourly).
-- **Overlay:** Ctrl+Shift+F7 shows or hides it, Ctrl+Shift+F8 makes it click-through. Run the game in borderless windowed mode.
-- **Seen prices:** type prices you see in the in-game Market; they beat older market prices.
-- **Craft quantities:** open a recipe and set how many crafts you plan; material totals follow.
+## Features
 
-This repository only hosts the installers and update files.
+### Crafting
+
+- **Profit ranking:** every recipe (394) ranked by expected profit per attempt at live market prices, with margin %, listing counts and flags for thin markets (1–3 listings) or missing prices.
+- **Buy or craft:** each material is costed at the cheaper of buying it and crafting it yourself, recursively. Open a recipe to see materials, outputs and the buy-or-craft choice per material.
+- **Success, combo and tax:** success chance per recipe, combo chances per category (weapons/armor, food, potions, manastones) and market tax, all editable in Settings.
+- **Your own prices:** type a price into any price box to override the market price (amber border). Inputs accept `320k`, `1.8m` or `34000000`.
+- **Craft quantities:** set how many crafts you plan; material totals follow.
+- **Price history:** trend lines and "▼ x% vs 7d" per item, "mats cheap" / "sell high" tags, and a chart popup (24h / 7d / 30d) when you click a trend line.
+- **Deals:** materials currently well below their usual 7-day price, with the recipes that use them.
+- **Favorites:** star recipes to keep them at hand in the overlay.
+
+### Overlay
+
+- **Ctrl+Shift+F7** shows or hides it, **Ctrl+Shift+F8** locks it (clicks go through to the game). Both hotkeys can be changed in Settings.
+- Tabs for Crafting (Favorites · Top · All · Deals) and Pets (Collection · Farm · Session · HUD · Map). Each group reopens the tab you used last.
+- Adjustable card opacity and a faint backdrop box.
+- **Only over AION 2** (on by default): while the game runs, the overlay and map hide when another program is in front and come back when you return to the game.
+- Opens at app start by default; the main window stays in the tray. Closing the main window keeps the app running in the tray.
+- The overlay never takes keyboard focus from the game, except while you type into it.
+
+### Pets
+
+- **Collection:** all 207 pets with level (5 / 25 / 75 souls for Lv 1 / 2 / 3), progress bars, collection titles, search, genus filters, sorting, "Missing only" and "Hide maxed". Star pets to keep them in view.
+- **Where to farm:** each pet's soul mobs with level, drop chance and zones. The **Farm** planner ranks zones by how many of your missing pets drop souls there.
+- **Automatic soul counting** (optional, needs Npcap): every soul drop is counted as it happens, shown as "+N" on the pet.
+- **Login sync:** when you log in, your whole pet collection is read from the game's login data, so levels and souls match the game.
+- **Farming now:** the pets you're farming this session, with souls per hour and an ETA to the next level.
+- **Session:** kills, Kinah, loot value (at market prices) and souls per hour, tracked per character.
+- **HUD:** a small, transparent farming view that shrinks to its content. Lock the overlay and play with it on screen.
+- **Nearest spawn and nearby soul mobs:** distance and direction to the nearest spawn of the pets you farm, plus a list of other missing pets whose soul mobs spawn within about 250 m of you.
+
+### Map window
+
+- Its own overlay-style window: where a pet's soul mobs spawn, every soul mob of a farming zone, or the full map.
+- **Your position** on the map, with a follow mode (Altgard for now; other maps once they're mapped).
+- A dashed line to the nearest spawn, with distance and direction.
+- **Layers:** hidden cubes, gathering nodes, teleport statues, seals and monolith materials (feathers). Icons grow as you zoom in; their size can be changed in Settings.
+- Maps that aren't on the Global client yet (Morheim, Eltnen, Middle and Upper Reshanta) are hidden.
+
+## How it works
+
+- **Prices:** [aion2.market](https://aion2.market) collects the lowest listing per item from the in-game market about once an hour. A small shared cache fetches it once for all users, and the app reads from there (falling back to aion2.market directly). Prices are lowest listings, not completed sales. The in-game market itself can't be read: it runs over encrypted HTTPS.
+- **Price history:** this repository keeps an hourly archive (below). The app imports the last days from here and keeps 30 days locally for trends, medians and charts.
+- **Profit:** expected profit per attempt = chance of each outcome (success, combo, failure) × the result's price after tax − the cost of the materials. Failed crafts lose the materials; a combo is a second roll after a success.
+- **Pets and position (optional):** with Npcap installed and "Count pet souls automatically" on, the app passively copies the game's own incoming network traffic on your PC and reads a few kinds of messages: your inventory changes (soul drops, loot), your kill credits, your pet collection at login, your character, the map you load into, and your own position from your skill casts.
+- **Fair play:** the app never touches the game: no injection, no memory reading, no input automation, and it never sends anything to the game server. It only shows your own position and static map data, never other players or monsters. Packet reading is passive and read-only, but use it at your own discretion.
+- **Data:** recipes from aion2hub; pets, monsters, spawn points, hidden cubes, gathering nodes and map tiles from [metabot.gg](https://metabot.gg); teleport statues, seals and feathers from [aion2-interactive-map](https://github.com/aion2-interactive-map/aion2-interactive-map) (CC BY-NC 4.0, converted to the app's map coordinates).
+- **Your data** (settings, favorites, prices you typed, pet progress, price history) stays on your PC in `%APPDATA%\at.w23.aion2craft`.
+
+This repository only hosts the installers, update files and the price archive.
 
 ## Price history
 
