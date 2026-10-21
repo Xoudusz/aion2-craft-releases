@@ -1,6 +1,6 @@
 # Aion2 Craft — releases
 
-Windows app for Aion 2: ranks crafting recipes by profit, tracks your pet souls, and shows a map, all in an in-game overlay.
+Windows app for Aion 2: ranks crafting recipes by profit, tracks your pet souls, field boss timers and a map, all in an in-game overlay.
 
 ## Install
 
@@ -8,7 +8,7 @@ Windows app for Aion 2: ranks crafting recipes by profit, tracks your pet souls,
 2. Run it. The installer is unsigned, so Windows SmartScreen may warn: click **More info**, then **Run anyway**.
 3. Optional, for the pet features: install [Npcap](https://npcap.com/#download) (free, default options).
 
-Installs for your Windows user only (no admin needed). The app updates itself: it checks for new versions at start and every 6 hours, and a banner offers to install them (one click, then it restarts).
+Installs for your Windows user only (no admin needed). The app updates itself: it checks for new versions at start and every 6 hours; an "Update" button in the overlay's footer installs them (one click, then it restarts).
 
 Run the game in **borderless windowed** mode; exclusive fullscreen hides overlays.
 
@@ -31,8 +31,9 @@ Run the game in **borderless windowed** mode; exclusive fullscreen hides overlay
 - Tabs for Crafting (Favorites · Top · All · Deals) and Pets (Collection · Farm · Session · HUD · Map). Each group reopens the tab you used last.
 - Adjustable card opacity and a faint backdrop box.
 - **Only over AION 2** (on by default): while the game runs, the overlay and map hide when another program is in front and come back when you return to the game.
-- Opens at app start by default; the main window stays in the tray. Closing the main window keeps the app running in the tray.
+- The overlay is the whole app (since 0.7.0 there's no separate window). The tray icon shows or hides it; closing it keeps the app running in the tray.
 - The overlay never takes keyboard focus from the game, except while you type into it.
+- Quick help (? button): how to sync (relog for pets), hotkeys, notifications.
 
 ### Pets
 
@@ -44,6 +45,11 @@ Run the game in **borderless windowed** mode; exclusive fullscreen hides overlay
 - **Session:** kills, Kinah, loot value (at market prices) and souls per hour, tracked per character.
 - **HUD:** a small, transparent farming view that shrinks to its content. Lock the overlay and play with it on screen.
 - **Nearest spawn and nearby soul mobs:** distance and direction to the nearest spawn of the pets you farm, plus a list of other missing pets whose soul mobs spawn within about 250 m of you.
+
+### Field bosses
+
+- Live respawn countdowns for every field boss on the map you're on (Altgard so far), in your local time, straight from the game's own boss list.
+- Star a boss to get a Windows notification before it spawns (5–30 min ahead, or at spawn).
 
 ### Map window
 
