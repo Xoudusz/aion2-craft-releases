@@ -1,5 +1,5 @@
 # Saves aion2.market prices every hour into history/<server>/<day>.csv.
-# The Aion2 Craft app downloads these files for its price history and "cheap now" signals.
+# The Atreia app (formerly Aion2 Craft) downloads these files for its price history and "cheap now" signals.
 name: Price archive
 
 on:

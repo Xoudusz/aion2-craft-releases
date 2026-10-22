@@ -1,4 +1,4 @@
-// Hourly price archive for Aion2 Craft. Run by .github/workflows/archive.yml.
+// Hourly price archive for Atreia (formerly Aion2 Craft). Run by .github/workflows/archive.yml.
 //
 // Fetches aion2.market's current quotes per server and appends new observations to
 // history/<server>/<YYYY-MM-DD>.csv (UTC day of the observation):
@@ -8,7 +8,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const SERVERS = [12301]; // Israphel (EU). Add more server ids here.
-const UA = "aion2-craft-archive (hourly; https://github.com/Xoudusz/aion2-craft-releases)";
+const UA = "atreia-archive (hourly; https://github.com/Xoudusz/atreia)";
 const BACKFILL_PER_RUN = 40;
 const BACKFILL_GAP_MS = 3000;
 const BACKFILL_AGAIN_MS = 7 * 86_400_000;

@@ -1,10 +1,11 @@
-# Aion2 Craft — releases
+# Atreia — releases
 
+nFormerly **Aion2 Craft**: installed copies update to Atreia by themselves and keep all their data.
 Windows app for Aion 2: ranks crafting recipes by profit, tracks your pet souls, field boss timers and a map, all in an in-game overlay.
 
 ## Install
 
-1. Download `Aion2 Craft_<version>_x64-setup.exe` from the [latest release](https://github.com/Xoudusz/aion2-craft-releases/releases/latest).
+1. Download `Atreia_<version>_x64-setup.exe` from the [latest release](https://github.com/Xoudusz/atreia/releases/latest).
 2. Run it. The installer is unsigned, so Windows SmartScreen may warn: click **More info**, then **Run anyway**.
 3. Optional, for the pet features: install [Npcap](https://npcap.com/#download) (free, default options).
 
