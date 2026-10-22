@@ -1,6 +1,6 @@
 # Atreia — releases
 
-nFormerly **Aion2 Craft**: installed copies update to Atreia by themselves and keep all their data.
+Formerly **Aion2 Craft**: installed copies update to Atreia by themselves and keep all their data.
 Windows app for Aion 2: ranks crafting recipes by profit, tracks your pet souls, field boss timers and a map, all in an in-game overlay.
 
 ## Install
